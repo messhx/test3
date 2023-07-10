@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.softeem.dao.DailyMapper">
+    <resultMap id="BaseResultMap" type="com.softeem.pojo.Daily">
+        <id property="id" column="id"></id>
+        <result property="gain" column="gain"></result>
+        <result property="question" column="question"></result>
+        <result property="suggest" column="suggest"></result>
+        <result property="subtime" column="subtime"></result>
+        <result property="lastupdatetime" column="lastupdatetime"></result>
+        <result property="sid" column="sid"></result>
+    </resultMap>
+    <!--共享的sql代码-->
+    <sql id="base_col_list">
+        id,gain,question,suggest,subtime,lastupdatetime,sid
+    </sql>
+
+    <insert id="insert" parameterType="com.softeem.pojo.Daily">
+        insert
+        into
+          daily(id,gain,question,suggest,subtime,lastupdatetime,sid)
+        values
+          (#{id},#{gain},#{question},#{suggest},#{subtime},#{lastupdatetime},#{sid})
+    </insert>
+    <insert id="insertSelective" parameterType="com.softeem.pojo.Daily">
+        insert
+        into
+          daily
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="gain != null">
+                gain,
+            </if>
+            <if test="question != null">
+                question,
+            </if>
+            <if test="suggest != null">
+                suggest,
+            </if>
+            <if test="subtime != null">
+                subtime,
+            </if>
+            <if test="lastupdatetime != null">
+                lastupdatetime,
+            </if>
+            <if test="sid != null">
+                sid,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="gain != null">
+                #{gain},
+            </if>
+            <if test="question != null">
+                #{question},
+            </if>
+            <if test="suggest != null">
+                #{suggest},
+            </if>
+            <if test="subtime != null">
+                #{subtime},
+            </if>
+            <if test="lastupdatetime != null">
+                #{lastupdatetime},
+            </if>
+            <if test="sid != null">
+                #{sid},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKey">
+
+    </update>
+    <update id="updateByPrimaryKeySelective">
+
+    </update>
+    <delete id="deleteByPrimaryKey">
+
+    </delete>
+    <select id="selectByPrimaryKey" resultType="com.softeem.pojo.Daily">
+        select
+          <include refid="base_col_list"/>
+        from
+          daily
+        where
+          id=#{id}
+    </select>
+    <select id="selectBySid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+          <include refid="base_col_list"/>
+        from
+          daily
+        where
+          sid=#{sid}
+    </select>
+</mapper>

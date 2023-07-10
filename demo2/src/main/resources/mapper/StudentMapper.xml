@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.softeem.dao.StudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.softeem.pojo.Student">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="phone" column="phone"></result>
+        <result property="password" column="password"></result>
+        <result property="sex" column="sex"></result>
+        <result property="regtime" column="regtime"></result>
+    </resultMap>
+
+    <sql id="Base_col_list">
+        id,name,phone,password,sex,regtime
+    </sql>
+    <insert id="insert" parameterType="com.softeem.pojo.Student">
+        insert
+        into
+          student(id,name,phone,password,sex,regtime)
+        values
+          (#{id},#{name},#{phone},#{password},#{sex},#{regtime})
+    </insert>
+    <insert id="insertSelective">
+
+    </insert>
+    <update id="updateByPrimaryKey">
+
+    </update>
+    <update id="updateByPrimaryKeySelective">
+
+    </update>
+    <delete id="deleteByPrimaryKey">
+
+    </delete>
+    <select id="selectByPrimaryKey"
+            resultType="com.softeem.pojo.Student"
+            parameterType="java.lang.Integer">
+        select
+          <include refid="Base_col_list"/>
+        from
+          student
+        where
+          id=#{id}
+    </select>
+    <select id="selectByPhone"
+            resultType="com.softeem.pojo.Student"
+            parameterType="java.lang.String">
+        select
+          <include refid="Base_col_list"/>
+        from
+          student
+        where
+          phone=#{phone}
+    </select>
+</mapper>
